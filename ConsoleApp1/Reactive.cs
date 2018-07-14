@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;
 using System.Reactive.Subjects;
 
 namespace RxTestApp {
@@ -55,6 +57,24 @@ namespace RxTestApp {
             subject.OnNext(2);
             Console.WriteLine("I'm free from exceptions!");
             subject.Dispose(); // An interesting thing to consider is that when a sequence completes or errors, you should still dispose of your subscription.
+        }
+
+        // The Create method will ensure the standard Dispose semantics, so calling Dispose() multiple times will only invoke the delegate you provide once.
+        public void DisposeTest() {
+            var disposable = Disposable.Create(() => Console.WriteLine("Being disposed."));
+            Console.WriteLine("Calling dispose...");
+            disposable.Dispose();
+            Console.WriteLine("Calling again...");
+            disposable.Dispose();
+        }
+
+        // Observable.Return() is the same as Observable.just() in Java. It emits an item then sends az OnCompleted() signal immediately.
+        public void ObservableReturnTest() {
+            var singleValue = Observable.Return("Value");
+            //which could have also been simulated with a replay subject
+            var subject = new ReplaySubject<string>();
+            subject.OnNext("Value");
+            subject.OnCompleted();
         }
     }
 }

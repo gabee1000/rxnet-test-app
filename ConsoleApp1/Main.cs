@@ -11,7 +11,9 @@ namespace RxTestApp {
             //reactive.AsyncSubjectTest();
             //reactive.SubscriptionTest();
             //reactive.UnsubscribeTest();
-            reactive.OnErrorAndOnCompletedTest();
+            //reactive.OnErrorAndOnCompletedTest();
+            //reactive.DisposeTest();
+            reactive.ObservableReturnTest();
         }
     }
 }
