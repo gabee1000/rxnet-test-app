@@ -8,9 +8,10 @@ namespace RxTestApp {
 
         static void Main(string[] args) {
             var reactive = new Reactive();
-            reactive.AsyncSubjectTest();
-            reactive.SubscriptionTest();
-            Console.ReadKey();
+            //reactive.AsyncSubjectTest();
+            //reactive.SubscriptionTest();
+            //reactive.UnsubscribeTest();
+            reactive.OnErrorAndOnCompletedTest();
         }
     }
 }
